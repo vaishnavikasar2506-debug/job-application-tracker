@@ -1,0 +1,221 @@
+/* ===== CSS VARIABLES: Light & Dark themes ===== */
+:root {
+  --bg-color: #f4f6f8;
+  --text-color: #1a1a1a;
+  --card-bg: #ffffff;
+  --accent: #4f46e5;
+  --border-color: #ddd;
+  --applied-color: #3b82f6;
+  --interview-color: #f59e0b;
+  --offer-color: #10b981;
+  --rejected-color: #ef4444;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --card-bg: #1e1e1e;
+  --border-color: #333;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== HEADER ===== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--accent);
+  color: white;
+}
+
+.app-header button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+}
+
+/* ===== DASHBOARD ===== */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover { transform: translateY(-4px); }
+
+.stat-card h3 { margin: 0 0 0.5rem; font-size: 0.9rem; opacity: 0.7; }
+.stat-card p { margin: 0; font-size: 1.8rem; font-weight: bold; }
+
+/* ===== CONTROLS ===== */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0 2rem 1rem;
+}
+
+.controls input,
+.controls select,
+.controls button {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.controls input { flex: 1; min-width: 200px; }
+
+#addNewBtn {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===== APPLICATION LIST ===== */
+.application-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 0 2rem 2rem;
+}
+
+.job-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1rem;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.job-card h3 { margin: 0 0 0.3rem; }
+.job-card p { margin: 0.2rem 0; font-size: 0.9rem; }
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: white;
+  margin-top: 0.3rem;
+}
+
+.status-Applied   { background-color: var(--applied-color); }
+.status-Interview { background-color: var(--interview-color); }
+.status-Offer     { background-color: var(--offer-color); }
+.status-Rejected  { background-color: var(--rejected-color); }
+
+.card-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-actions button {
+  flex: 1;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.favorite-star {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal-box {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 420px;
+}
+
+.modal-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.form-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.form-buttons button {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#saveBtn { background-color: var(--accent); color: white; }
+#cancelBtn { background-color: var(--border-color); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .dashboard { grid-template-columns: repeat(2, 1fr); }
+  .app-header { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
